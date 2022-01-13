@@ -1,0 +1,59 @@
+ {% load static %}
+
+ {% block body %}
+
+ {% include 'user_navigation.html' %}
+ <style>
+     tr{text-align:center}
+ </style>
+
+   <marquee style="font-family:'Monotype Corsiva';font-size:25px;color:green;background-color:maroon;font-weight:bold;margin-top:1%">
+     User can apply this Jobs...
+   </marquee>
+ <hr>
+ <div class="container">
+ <table class="table table-hover" id="example">
+     <thead>
+      <tr style="background-color:#FFFF00">
+         <th>S.No</th>
+          <th>Job Title</th>
+<!--          <th>Company</th>-->
+          <th>Description</th>
+          <th>Salary in LPA</th>
+          <th>Experience</th>
+          <th>Location</th>
+          <th>Creation Date</th>
+          <th>Lat Date for apply</th>
+
+          <th>Action</th>
+      </tr>
+
+     </thead>
+      <tbody>
+      {% for i in job %}
+         <tr style= "background-color: 	#90EE90">
+             <td> {{forloop.counter}}</td>
+             <td> {{i.title}}</td>
+<!--             <td> {{i.Recruiter.company}}</td>-->
+             <td>{{i.description}}</td>
+             <td>{{i.salary}}</td>
+             <td>{{i.experience}}</td>
+              <td>{{i.location}}</td>
+             <td> {{i.creationdate}}</td>
+             <td> {{i.end_date}}</td>
+
+
+
+
+             <td><a href="apply_job" class="btn btn-info btn-sm" type="submit">Apply</a></td>
+
+<!--             <td><a href="{% url 'edit_jobdetail' i.id%}" class="btn btn-success btn-sm">Edit</a>-->
+<!--             <a href="{% url 'change_status' i.id%}" class="btn btn-danger btn-sm">Delete</a>-->
+             </td>
+         </tr>
+      {% endfor %}
+      </tbody>
+
+ </table>
+</div>
+  {% endblock %}

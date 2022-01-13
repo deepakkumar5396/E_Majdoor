@@ -1,0 +1,52 @@
+{% load static %}
+
+ {% block body %}
+
+ {% include 'user_navigation.html' %}
+ <script>
+    function checkpass()
+      {
+          if(document.signup.pwd.value!=document.signup.cpwd.value)
+            {
+                alert('Password and Conform Password does not match');
+                document.signup.cpwd.focus();
+                return false;
+            }
+        return true;
+
+      }
+ </script>
+  <marquee style="font-family:'Monotype Corsiva';font-size:25px;color:darkcyan;background-color:maroon;font-weight:bold;margin-top:1%">
+     Apply for Job
+   </marquee>
+   <hr>
+    <form class="container mt-5" onsubmit="return checkpass();" name="signup" method="POST" enctype="multipart/form-data">
+      {%csrf_token%}
+         <div class="form-row">
+
+               <div class="form-group col-md-6">
+                  <label>Resume</label>
+                  <input type="file" class="form-control" name="image" required>
+               </div>
+            </div>
+
+            <input type="submit" value="Submit" class="btn btn-primary my-3" style="width:200px">
+
+
+
+     </form>
+    {% include 'footer.html'%}
+     {% ifequal error "no" %}
+      <script>
+          alert("Signup successfull");
+          window.location=('{%url 'user_login'%}')
+      </script>
+     {% endifequal %}
+ {% ifequal error "yes" %}
+      <script>
+          alert("Something went wrong try again.....");
+
+      </script>
+     {% endifequal %}
+
+  {% endblock %}
